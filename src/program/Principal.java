@@ -1,8 +1,10 @@
 package program;
 
 import java.math.BigDecimal;
+import java.text.DecimalFormat;
 import java.time.LocalDate;
 import java.time.Month;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 
 import entities.Funcionario;
@@ -25,6 +27,22 @@ public class Principal {
 	public static void removeEmployeeByName(ArrayList<Funcionario> employeesList, String name) {
 		employeesList.removeIf(f -> f.getNome().equals(name));
 	}
+	
+	public static void printEmployees(ArrayList<Funcionario> employeesList) {
+        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+        DecimalFormat df = new DecimalFormat("#,##0.00");
+        
+        System.out.println("Lista de todos os funcionários");
+        
+        for (Funcionario employee : employeesList) {
+        	String name = employee.getNome();
+        	String date = dtf.format(employee.getDataNascimento());
+        	String salary = df.format(employee.getSalario());
+        	String role = employee.getFuncao();
+
+            System.out.println("Nome: " + name + ", Data de nascimento: " + date + ", Salário: R$ " + salary + ", Função: " + role);
+        }
+	}
 
 	public static void main(String[] args) {
 		ArrayList<Funcionario> employeesList = new ArrayList<>();
@@ -32,5 +50,7 @@ public class Principal {
 		insertEmployees(employeesList);
 		
 		removeEmployeeByName(employeesList, "João");
+		
+		printEmployees(employeesList);
 	}
 }
