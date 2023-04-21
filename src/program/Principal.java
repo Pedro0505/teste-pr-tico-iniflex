@@ -43,6 +43,10 @@ public class Principal {
             System.out.println("Nome: " + name + ", Data de nascimento: " + date + ", Salário: R$ " + salary + ", Função: " + role);
         }
 	}
+	
+	public static void increaseSalary(ArrayList<Funcionario> employeesList, BigDecimal percentage) {
+		employeesList.forEach(f -> f.setSalario(f.getSalario().multiply(BigDecimal.ONE.add(percentage.divide(BigDecimal.valueOf(100))))));
+	}
 
 	public static void main(String[] args) {
 		ArrayList<Funcionario> employeesList = new ArrayList<>();
@@ -52,5 +56,9 @@ public class Principal {
 		removeEmployeeByName(employeesList, "João");
 		
 		printEmployees(employeesList);
+
+        System.out.println();
+		
+		increaseSalary(employeesList, new BigDecimal("10"));
 	}
 }
