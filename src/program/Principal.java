@@ -6,6 +6,8 @@ import java.time.LocalDate;
 import java.time.Month;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 import entities.Funcionario;
 import utils.enums.Role;
@@ -47,6 +49,16 @@ public class Principal {
 	public static void increaseSalary(ArrayList<Funcionario> employeesList, BigDecimal percentage) {
 		employeesList.forEach(f -> f.setSalario(f.getSalario().multiply(BigDecimal.ONE.add(percentage.divide(BigDecimal.valueOf(100))))));
 	}
+	
+	public static void grouppingEmployeeByRole(Map<String, ArrayList<Funcionario>> employeeByRole, ArrayList<Funcionario> employeesList) {
+        for (Funcionario employee : employeesList) {
+            String funcao = employee.getFuncao();
+            if (!employeeByRole.containsKey(funcao)) {
+            	employeeByRole.put(funcao, new ArrayList<>());
+            }
+            employeeByRole.get(funcao).add(employee);
+        }
+	}
 
 	public static void main(String[] args) {
 		ArrayList<Funcionario> employeesList = new ArrayList<>();
@@ -60,5 +72,10 @@ public class Principal {
         System.out.println();
 		
 		increaseSalary(employeesList, new BigDecimal("10"));
+		
+        Map<String, ArrayList<Funcionario>> employeeByRole = new HashMap<>();
+        
+        grouppingEmployeeByRole(employeeByRole, employeesList);
+
 	}
 }
