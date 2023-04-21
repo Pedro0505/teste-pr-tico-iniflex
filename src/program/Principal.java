@@ -4,6 +4,7 @@ import java.math.BigDecimal;
 import java.text.DecimalFormat;
 import java.time.LocalDate;
 import java.time.Month;
+import java.time.Period;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -69,7 +70,34 @@ public class Principal {
             }
         }
 	}
+	
+	public static void printEmployeeByBirthdayMonth(ArrayList<Funcionario> employeesList) {
+		System.out.println("Aniversariantes de outubro ou dezembro:");
 
+		for (Funcionario employee : employeesList) {
+		    int mesAniversario = employee.getDataNascimento().getMonthValue();
+		    if (mesAniversario == 10 || mesAniversario == 12) {
+		        System.out.println(employee);
+		    }
+		}
+	}
+	
+	public static void printOlderEmployee(ArrayList<Funcionario> employeesList) {
+		Funcionario older = null;
+		int biggerAge = 0;
+
+		for (Funcionario e : employeesList) {
+		    int age = Period.between(e.getDataNascimento(), LocalDate.now()).getYears();
+		    if (age > biggerAge) {
+		    	biggerAge = age;
+		        older = e;
+		    }
+		}
+
+		System.out.printf("Funcionário mais velho: %s, %d anos\n", older.getNome(), biggerAge);
+	}
+	
+	
 	public static void main(String[] args) {
 		ArrayList<Funcionario> employeesList = new ArrayList<>();
 
@@ -89,5 +117,14 @@ public class Principal {
 
         printEmployeeByRole(employeeByRole);
         
+        System.out.println();
+        
+        printEmployeeByBirthdayMonth(employeesList);
+        
+        System.out.println();
+        
+        printOlderEmployee(employeesList);
+        
+        System.out.println();
 	}
 }
