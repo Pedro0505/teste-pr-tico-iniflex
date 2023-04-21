@@ -7,6 +7,8 @@ import java.time.Month;
 import java.time.Period;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -97,7 +99,15 @@ public class Principal {
 		System.out.printf("Funcionário mais velho: %s, %d anos\n", older.getNome(), biggerAge);
 	}
 	
-	
+	public static void printEmployeesSortedByName(ArrayList<Funcionario> employeesList) {
+		Collections.sort(employeesList, Comparator.comparing(Funcionario::getNome));
+
+		System.out.println("Funcionários em ordem alfabética:");
+		for (Funcionario e : employeesList) {
+		    System.out.println(e);
+		}	
+	}
+
 	public static void main(String[] args) {
 		ArrayList<Funcionario> employeesList = new ArrayList<>();
 
@@ -126,5 +136,7 @@ public class Principal {
         printOlderEmployee(employeesList);
         
         System.out.println();
+        
+        printEmployeesSortedByName(employeesList);
 	}
 }
