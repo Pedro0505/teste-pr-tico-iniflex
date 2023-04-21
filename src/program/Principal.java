@@ -107,6 +107,15 @@ public class Principal {
 		    System.out.println(e);
 		}	
 	}
+	
+	public static void printSumOfEmployeesSalary(ArrayList<Funcionario> employeesList) {
+		BigDecimal sumSalary = BigDecimal.ZERO;
+		for (Funcionario e : employeesList) {
+			sumSalary = sumSalary.add(e.getSalario());
+		}
+
+		System.out.printf("Soma dos salários: R$%,.2f\n", sumSalary);
+	}
 
 	public static void main(String[] args) {
 		ArrayList<Funcionario> employeesList = new ArrayList<>();
@@ -138,5 +147,9 @@ public class Principal {
         System.out.println();
         
         printEmployeesSortedByName(employeesList);
+        
+        System.out.println();
+        
+        printSumOfEmployeesSalary(employeesList);
 	}
 }
