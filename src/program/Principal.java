@@ -1,6 +1,7 @@
 package program;
 
 import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.text.DecimalFormat;
 import java.time.LocalDate;
 import java.time.Month;
@@ -116,7 +117,17 @@ public class Principal {
 
 		System.out.printf("Soma dos salários: R$%,.2f\n", sumSalary);
 	}
+	
+	public static void printMinSalaryByEmployee(ArrayList<Funcionario> employeesList) {
+		BigDecimal minSalary = new BigDecimal("1212.00");
 
+		System.out.println("Salários em salários mínimos:");
+		for (Funcionario e : employeesList) {
+		    BigDecimal numSalariosMinimos = e.getSalario().divide(minSalary, 2, RoundingMode.DOWN);
+		    System.out.printf("%s: recebe  %.2f salários mínimos\n", e.getNome(), numSalariosMinimos);
+		}
+	}
+	
 	public static void main(String[] args) {
 		ArrayList<Funcionario> employeesList = new ArrayList<>();
 
@@ -151,5 +162,9 @@ public class Principal {
         System.out.println();
         
         printSumOfEmployeesSalary(employeesList);
+
+        System.out.println();
+        
+        printMinSalaryByEmployee(employeesList);
 	}
 }
