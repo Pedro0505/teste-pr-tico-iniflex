@@ -21,10 +21,16 @@ public class Principal {
 		employeesList.add(new Funcionario("Heloísa", LocalDate.of(2003, Month.MAY, 24), BigDecimal.valueOf(1606.85), Role.ELETRICISTA.getValor()));
 		employeesList.add(new Funcionario("Helena", LocalDate.of(1996, Month.SEPTEMBER, 2), BigDecimal.valueOf(2799.93), Role.GERENTE.getValor()));
 	}
-	
+
+	public static void removeEmployeeByName(ArrayList<Funcionario> employeesList, String name) {
+		employeesList.removeIf(f -> f.getNome().equals(name));
+	}
+
 	public static void main(String[] args) {
 		ArrayList<Funcionario> employeesList = new ArrayList<>();
 
 		insertEmployees(employeesList);
+		
+		removeEmployeeByName(employeesList, "João");
 	}
 }
