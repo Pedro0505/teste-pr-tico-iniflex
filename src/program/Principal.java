@@ -59,6 +59,16 @@ public class Principal {
             employeeByRole.get(funcao).add(employee);
         }
 	}
+	
+	public static void printEmployeeByRole(Map<String, ArrayList<Funcionario>> employeeByRole) {
+        System.out.println("Funcionários por função:");
+        for (String role : employeeByRole.keySet()) {
+            System.out.println("- " + role + ":");
+            for (Funcionario e : employeeByRole.get(role)) {
+                System.out.println("° " + e.getNome());
+            }
+        }
+	}
 
 	public static void main(String[] args) {
 		ArrayList<Funcionario> employeesList = new ArrayList<>();
@@ -68,8 +78,6 @@ public class Principal {
 		removeEmployeeByName(employeesList, "João");
 		
 		printEmployees(employeesList);
-
-        System.out.println();
 		
 		increaseSalary(employeesList, new BigDecimal("10"));
 		
@@ -77,5 +85,9 @@ public class Principal {
         
         grouppingEmployeeByRole(employeeByRole, employeesList);
 
+        System.out.println();
+
+        printEmployeeByRole(employeeByRole);
+        
 	}
 }
