@@ -139,32 +139,32 @@ public class Principal {
 		
 		increaseSalary(employeesList, new BigDecimal("10"));
 		
-        Map<String, ArrayList<Funcionario>> employeeByRole = new HashMap<>();
+        	Map<String, ArrayList<Funcionario>> employeeByRole = new HashMap<>();
         
-        grouppingEmployeeByRole(employeeByRole, employeesList);
+        	grouppingEmployeeByRole(employeeByRole, employeesList);
 
-        System.out.println();
+        	System.out.println();
 
-        printEmployeeByRole(employeeByRole);
+        	printEmployeeByRole(employeeByRole);
         
-        System.out.println();
+        	System.out.println();
         
-        printEmployeeByBirthdayMonth(employeesList);
+        	printEmployeeByBirthdayMonth(employeesList);
         
-        System.out.println();
+        	System.out.println();
         
-        printOlderEmployee(employeesList);
+        	printOlderEmployee(employeesList);
         
-        System.out.println();
+        	System.out.println();
         
-        printEmployeesSortedByName(employeesList);
+        	printEmployeesSortedByName(employeesList);
         
-        System.out.println();
+        	System.out.println();
         
-        printSumOfEmployeesSalary(employeesList);
+        	printSumOfEmployeesSalary(employeesList);
 
-        System.out.println();
+        	System.out.println();
         
-        printMinSalaryByEmployee(employeesList);
+        	printMinSalaryByEmployee(employeesList);
 	}
 }
